@@ -41,7 +41,7 @@ Tener Python 3 instalado en tu sistema.
 2. Clonar el Repositorio
 Clona este repositorio en tu máquina local (o simplemente descarga los archivos):
 
-git clone [URL_DE_TU_REPOSITORIO_EN_GITHUB]
+git clone [https://github.com/Sophy083/Mi-Simulador-Solar.git]
 cd MiSimuladorSolar
 
 3. Instalar las Dependencias
