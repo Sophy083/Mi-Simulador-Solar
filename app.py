@@ -1,7 +1,5 @@
 # ==============================================================================
-# PROYECTO FINAL: SIMULADOR DE ENERGÍA SOLAR (VERSIÓN CON GRÁFICA MEJORADA)
-# Este script crea una aplicación web completa que cumple con todos los
-# requisitos de software del proyecto de Computación Numérica.
+# PROYECTO FINAL: SIMULADOR DE ENERGÍA SOLAR
 # ==============================================================================
 
 # --- Bloque 1: Importación de Librerías Esenciales ---
@@ -17,7 +15,7 @@ import base64
 app = Flask(__name__)
 plt.ioff()
 
-# --- Bloque 3: Función Principal de Simulación ("El Cerebro") ---
+# --- Bloque 3: Función Principal de Simulación ---
 def ejecutar_simulacion_completa(lat, lon, fecha_obj, tilt, azimut):
     """
     Realiza una simulación solar completa y genera resultados y una gráfica mejorada.
@@ -55,7 +53,7 @@ def ejecutar_simulacion_completa(lat, lon, fecha_obj, tilt, azimut):
     }
 
     # ==============================================================================
-    # --- Bloque 3.7: GENERACIÓN DE LA GRÁFICA MEJORADA ---
+    # --- Bloque 3.7: GENERACIÓN DE LA GRÁFICA ---
     # ==============================================================================
     fig, ax1 = plt.subplots(figsize=(11, 6)) # Un poco más grande para mayor claridad
     
