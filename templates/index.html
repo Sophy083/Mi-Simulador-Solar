@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Energía Solar</title>
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Simulador de Energía Solar ☀️</h1>
+            <p>Una herramienta de Computación Numérica para modelar el rendimiento de un panel fotovoltaico.</p>
+        </header>
+        
+        <main>
+            <section class="form-section">
+                <h2>Parámetros de Simulación</h2>
+                <form action="/simular" method="post">
+                    <div class="form-group">
+                        <label for="latitud">Latitud Geográfica (°):</label>
+                        <input type="number" step="any" id="latitud" name="latitud" required value="6.244">
+                    </div>
+                    <div class="form-group">
+                        <label for="longitud">Longitud Geográfica (°):</label>
+                        <input type="number" step="any" id="longitud" name="longitud" required value="-75.573">
+                    </div>
+                    <div class="form-group">
+                        <label for="inclinacion">Inclinación del Panel (°):</label>
+                        <input type="number" step="any" id="inclinacion" name="inclinacion" required value="15">
+                    </div>
+                    <div class="form-group">
+                        <label for="azimut">Azimut del Panel (° Sur=180):</label>
+                        <input type="number" step="any" id="azimut" name="azimut" required value="180">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="fecha">Fecha de Simulación:</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
+                    <button type="submit">Ejecutar Simulación</button>
+                </form>
+            </section>
+
+            <!-- La sección de resultados solo se muestra si Python envía datos -->
+            <section class="results-section">
+                {% if error %}
+                    <div class="error">
+                        <h3>Ocurrió un Error</h3>
+                        <p>{{ error }}</p>
+                    </div>
+                {% endif %}
+
+                {% if resultados and plot_url %}
+                    <h2>Resultados de la Simulación</h2>
+                    <div class="summary">
+                        <div class="summary-item">
+                            <span>Energía Diaria Generada</span>
+                            <strong>{{ resultados.energia_diaria }}</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Potencia Máxima Alcanzada</span>
+                            <strong>{{ resultados.potencia_maxima }}</strong>
+                        </div>
+                    </div>
+                    <div class="plot">
+                        <h3>Gráfica de Producción vs. Altitud Solar</h3>
+                        <img src="data:image/png;base64,{{ plot_url }}" alt="Gráfica de la simulación solar">
+                    </div>
+                {% endif %}
+            </section>
+        </main>
+    </div>
+</body>
+</html>
